@@ -1,0 +1,33 @@
+.container-form-schedule{
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-schedule-inputs{
+    width: 50%;
+    padding: 0 1rem; 
+    margin: 1rem 0;
+}
+
+.form-schedule-display{
+    width: 50%;
+    padding: 1rem 1rem;
+    margin: 1rem 0;
+}
+
+@media screen and (max-width: 768px) {
+    .container-form-schedule{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .form-schedule-inputs{
+        width: 100%;
+    }
+    
+    .form-schedule-display{
+        width: 100%;
+    }
+}
