@@ -5,7 +5,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import CardBag from "../../components/CardBag/CardBag";
 import { async } from "@firebase/util";
 
-const Bag = () => {
+const ShoppingCart = () => {
 
     const [data, setData] = useState([]);
     const baggedItems = []
@@ -49,4 +49,4 @@ const Bag = () => {
       )
 }
 
-export default Bag;
+export default ShoppingCart;

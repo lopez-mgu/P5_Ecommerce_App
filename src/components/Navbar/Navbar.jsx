@@ -1,39 +1,33 @@
-import React, { useContext, useState, useRef }  from "react";
-import {Link, Outlet} from 'react-router-dom';
+import React, { useContext, useState }  from "react";
+import {Link} from 'react-router-dom';
 import {Navbar as NavbarBs, Container, Nav, Button} from 'react-bootstrap';
-import {
-    CartStateContext,
-    CartDispatchContext,
-    toggleCartPopup
-  } from "../../context/CartContext";
-import CartPopOver from '../CartPopOver/CartPopOver'
+import { CartStateContext } from "../../context/CartContext";
 import CartOffCanvas from "../CartOffCanvas/CartOffCanvas";
 
 const Navbar = () => {
-    const { items: cartItems, isCartOpen } = useContext(CartStateContext);
+    const { items: cartItems} = useContext(CartStateContext);
     let cartQuantity = 0
     cartItems.forEach(item => {cartQuantity += item.quantity});
+    console.log(cartItems, "desde navbar", cartQuantity)
 
     const [show, setShow] = useState(false);
     const [target, setTarget] = useState(null);
   
     const handleClick = (event) => {
-    //   console.log('entro')
       setShow(!show);
       setTarget(event.target);
     };
-    // console.log(cartQuantity)
     return(
         <>
             <NavbarBs bg="light" expand="lg" className="mb-3 shadow-sm p-3 bg-white">
                 <Container>
-                    <NavbarBs.Brand as={Link} to='/'>Cocktail Avenue</NavbarBs.Brand>
+                    <NavbarBs.Brand as={Link} to='/'>G-Jewerly</NavbarBs.Brand>
                     <NavbarBs.Toggle aria-controls="basic-navbar-nav" />
                     <NavbarBs.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto"> 
-                        <Nav.Link as={Link} to='/'>Principal</Nav.Link>
-                        <Nav.Link as={Link} to='/menu'>Menú</Nav.Link>
-                        <Nav.Link as={Link} to='/reservation'>Reservar</Nav.Link>
+                        <Nav.Link as={Link} to='/'>Home</Nav.Link>
+                        <Nav.Link as={Link} to='/store'>Tienda</Nav.Link>
+                        <Nav.Link as={Link} to='/loggin'>Loggin</Nav.Link>
                     </Nav>
                     </NavbarBs.Collapse>
                     <Button
@@ -62,10 +56,7 @@ const Navbar = () => {
                         <CartOffCanvas show={show}/>   
                     </Button>
                 </Container>
-
-            </NavbarBs>
-            {/* <Outlet></Outlet> */}
-            
+            </NavbarBs> 
         </>
     );
 }

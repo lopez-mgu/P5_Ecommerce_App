@@ -9,7 +9,7 @@ const Store = () => {
   const [products, setProducts] = useState([]);
 
   const getProducts = async () => {
-    const url = 'http://localhost:4000/api/v1/products';
+    const url = 'https://p5-lopezmgu-ecommerce-backend.herokuapp.com/api/v1/products';
     const res = await axios.get(url)
     console.log(res.data)
     setProducts(res.data)

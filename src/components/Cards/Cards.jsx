@@ -4,25 +4,18 @@ import { CartDispatchContext, CartStateContext, addToCart, removeFromCart, remov
 import formatCurrency from '../../Utilities/FormatCurrency';
 
 const Cards = ({data}) => {
-    const { items: cartItems} = useContext(CartStateContext);
-    const [isAdded, setIsAdded] = useState(false);
     const [quantity, setQuantity] = useState(0)
     const dispatch = useContext(CartDispatchContext);
+    const { items: cartItems } = useContext(CartStateContext);
     const { img_url, type, price, _id, description } = data;
-
-    // const quantity = cartItems.map((item)=>{ return item._id === _id ? parseInt(item.quantity): 0 })
     
     const handleAddToCart = () => {
         const product = { ...data, quantity: 1 };
         addToCart(dispatch, product);
-        // setIsAdded(true);
-        handleAddQuantity();
-        // setTimeout(() => {
-        //   setIsAdded(false);
-        // }, 3500);
+        handleUpdateQuantity();
       };
 
-    const handleAddQuantity = () => {
+    const handleUpdateQuantity = () => {
         const itemQty = cartItems.find(item => item._id === _id)?.quantity || 0
         setQuantity(itemQty)
     }
@@ -30,20 +23,16 @@ const Cards = ({data}) => {
     const handleRemoveOneFromCart = () => {
         const product = { ...data, quantity: 1 };
         removeOneFromCart(dispatch, product);
-        // setIsAdded(true);
-        handleAddQuantity();
-        // setTimeout(() => {
-        //   setIsAdded(false);
-        // }, 3500);
+        handleUpdateQuantity();
       };
 
     const handleRemove = (productId) => {
         removeFromCart(dispatch, productId);
-        handleAddQuantity();
+        handleUpdateQuantity();
     };
 
     useEffect(()=>{
-        handleAddQuantity();
+        handleUpdateQuantity();
     },[])
 
     return(
@@ -59,11 +48,11 @@ const Cards = ({data}) => {
                     <div className="mt-auto">
                         {/* <Button className="w-100" onClick={handleAddToCart}>+ Agregar</Button>
                         <Button variant="danger" size="sm" onClick={() => handleRemove(data._id)}>Quitar</Button> */}
-                        {quantity == 0 ? (
+                        {quantity === 0 ? (
                             <Button className="w-100" onClick={handleAddToCart}>+ Agregar</Button>
                         ): <div className="d-flex align-items-center justify-content-center flex-column" style={{ gap: "0.5rem"}}>
                                 <div className="d-flex align-items-center justify-content-center" style={{ gap: "0.5rem"}}>
-                                    <Button>-</Button>
+                                    <Button onClick={handleRemoveOneFromCart}>-</Button>
                                     <div>
                                         <span className="fs-3">{quantity}</span> en bolsa
                                     </div>

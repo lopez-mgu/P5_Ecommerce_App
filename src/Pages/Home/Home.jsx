@@ -8,7 +8,8 @@ const Home = () => {
         <>
             <div className="main-section">
                 <Container>
-                    <Carousel>
+                    <img width={1200} height={650} alt="900x500" src="Images/Principal.jpg" />
+                    {/* <Carousel>
                         <Carousel.Item>
                             <div className="carousel-img">
                                 <img width={1200} height={650} alt="900x500" src="Images/Principal.jpg" />
@@ -36,7 +37,7 @@ const Home = () => {
                             <p>Viendo cómo nuestros bartenders preparan tus bebidas.</p>
                             </Carousel.Caption>
                         </Carousel.Item>
-                    </Carousel>
+                    </Carousel> */}
                 </Container>
                 <Container className="d-flex main-section-content">
                     <div className="main-section-text">

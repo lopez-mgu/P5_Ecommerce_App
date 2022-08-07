@@ -1,11 +1,7 @@
-import React, { useRef, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Offcanvas, Stack } from "react-bootstrap";
 import formatCurrency from '../../Utilities/FormatCurrency';
-import {
-    CartStateContext,
-    CartDispatchContext,
-    toggleCartPopup
-  } from "../../context/CartContext";
+import { CartStateContext } from "../../context/CartContext";
 import CardOffCanvas from '../CardOffCanvas/CardOffCanvas';
 
 
