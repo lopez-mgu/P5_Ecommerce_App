@@ -17,11 +17,12 @@ const Navbar = () => {
       setShow(!show);
       setTarget(event.target);
     };
+
     return(
         <>
-            <NavbarBs bg="light" expand="lg" className="mb-3 shadow-sm p-3 bg-white">
+            <NavbarBs sticky="top" bg="light" expand="lg" className="mb-3 shadow-sm p-3 bg-white">
                 <Container>
-                    <NavbarBs.Brand as={Link} to='/'>G-Jewerly</NavbarBs.Brand>
+                    <NavbarBs.Brand as={Link} to='/'>G-Jewelry</NavbarBs.Brand>
                     <NavbarBs.Toggle aria-controls="basic-navbar-nav" />
                     <NavbarBs.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto"> 

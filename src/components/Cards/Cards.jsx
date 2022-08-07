@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import {Card, Button} from 'react-bootstrap';
-import { CartDispatchContext, CartStateContext, addToCart, removeFromCart, removeOneFromCart } from "../../context/CartContext";
+import { CartDispatchContext, CartStateContext, addToCart, removeFromCart, removeOneFromCart, getItemQuantity } from "../../context/CartContext";
 import formatCurrency from '../../Utilities/FormatCurrency';
 
 const Cards = ({data}) => {
@@ -16,8 +16,9 @@ const Cards = ({data}) => {
       };
 
     const handleUpdateQuantity = () => {
-        const itemQty = cartItems.find(item => item._id === _id)?.quantity || 0
-        setQuantity(itemQty)
+        // const qtyFound = getItemQuantity(dispatch, _id)
+        const qtyFound = cartItems.find(item => item._id === _id)?.quantity || 0
+        setQuantity(qtyFound);
     }
 
     const handleRemoveOneFromCart = () => {
