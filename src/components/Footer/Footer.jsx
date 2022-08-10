@@ -6,7 +6,7 @@ import './Footer.css';
 
 const Footer = () => {
     return(
-        <div className="main-footer">
+        <div className="main-footer" sticky="bottom">
             <Container>
                 <Row className="justify-content-center">
                     {/* Column1 */}

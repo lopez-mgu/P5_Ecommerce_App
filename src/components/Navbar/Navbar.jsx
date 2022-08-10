@@ -8,7 +8,7 @@ const Navbar = () => {
     const { items: cartItems} = useContext(CartStateContext);
     let cartQuantity = 0
     cartItems.forEach(item => {cartQuantity += item.quantity});
-    console.log(cartItems, "desde navbar", cartQuantity)
+    // console.log(cartItems, "desde navbar", cartQuantity)
 
     const [show, setShow] = useState(false);
     const [target, setTarget] = useState(null);
@@ -54,7 +54,7 @@ const Navbar = () => {
                             >
                             {cartQuantity}
                         </div> 
-                        <CartOffCanvas show={show}/>   
+                        <CartOffCanvas show={show} quantity={cartQuantity}/>   
                     </Button>
                 </Container>
             </NavbarBs> 

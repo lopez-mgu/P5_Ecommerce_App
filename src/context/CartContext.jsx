@@ -2,7 +2,6 @@ import React, { useReducer, createContext, useEffect } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 const initialState = {
-  ItemQty: 0,
   items: []
 };
 
@@ -11,16 +10,6 @@ export const CartDispatchContext = createContext();
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "GET_ITEM_QTY":
-      // console.log('entrando a get item qty')
-      console.log(state.items.find(item => item._id === action.payload.cartItemId)?.quantity || 0)
-      const ItemQtyFound = state.items.find(item => item._id === action.payload.cartItemId)?.quantity || 0
-      return {
-        ...state,
-        ItemQty: ItemQtyFound
-
-      };
-
     case "ADD_TO_CART":
       const id = action.payload.cartItem._id;
       const isOld = state.items.map((item) => item._id).includes(id);
@@ -85,16 +74,6 @@ const reducer = (state, action) => {
   }
 };
 
-export const getItemQuantity = (dispatch, cartItemId) => {
-  return dispatch({
-    type: "GET_ITEM_QTY",
-    payload: {
-      cartItemId: cartItemId
-    }
-  });
-  // return cartItems.find(item => item.id === id)?.quantity || 0
-}
-
 export const addToCart = (dispatch, cartItem) => {
   return dispatch({
     type: "ADD_TO_CART",
@@ -134,7 +113,6 @@ const CartProvider = ({ children }) => {
     []
   );
   const persistedCartState = {
-    ItemQty: 0,
     items: persistedCartItems || []
   };
   const [state, dispatch] = useReducer(reducer, persistedCartState);

@@ -1,52 +1,28 @@
-import React, { useState } from "react";
-import { onSnapshot, collection} from 'firebase/firestore';
-import { db } from '../../firebase';
-import { Col, Container, Row } from 'react-bootstrap';
-import CardBag from "../../components/CardBag/CardBag";
-import { async } from "@firebase/util";
+import React, { useContext } from "react";
+import CardCart from "../../components/CardCart/CardCart";
+import { CartStateContext } from "../../context/CartContext";
+import formatCurrency from '../../Utilities/FormatCurrency';
+
 
 const ShoppingCart = () => {
-
-    const [data, setData] = useState([]);
-    const baggedItems = []
-
-    const getData = async () =>{
-        
-        const lsData = JSON.parse(localStorage.getItem('CoctailAvenueBag'));
-        lsData.map((e) =>{
-            return(
-                await db.collection('menu').doc(e.id).get()
-            )
-        })
-        
-    }
-
-    
-
-    return (
+    const { items: cartItems } = useContext(CartStateContext);
+    return(
         <>
-            {(() => {
-                if((localStorage.getItem('CoctailAvenueBag')===null)){
-                }else{
-                    <Container>
-                        <Row className="g-4">
-                        {
-                            data.map((info, index) =>{
-                            return(
-                                <Col key={index} className='d-flex justify-content-center'>
-                                    <CardBag data={info}/>
-                                </Col>
-                            );
-                            })
-                        }
-                        </Row>
-                     </Container>
-                }
-            })}
-
+            {cartItems.map(item => (
+                            <CardCart key={item._id} data={item} />
+                        ))}
+            <div className="ms-auto fw-bold fs-5">
+                Total{" "}
+                {formatCurrency(
+                cartItems.reduce((total, cartItem) => {
+                    return total + cartItem.price * cartItem.quantity
+                }, 0)
+                )}
+            </div>
+    
         </>
-        
-      )
+    )
+
 }
 
 export default ShoppingCart;

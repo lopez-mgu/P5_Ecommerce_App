@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Cards from '../../components/Cards/Cards.jsx';
 import { Col, Container, Row } from 'react-bootstrap';
+import { CartStateContext } from "../../context/CartContext";
 import axios from 'axios';
 
 //http://localhost:4000/api/v1/products
 const Store = () => {
-
+  const { items: cartItems} = useContext(CartStateContext);
   const [products, setProducts] = useState([]);
 
   const getProducts = async () => {
@@ -25,9 +26,10 @@ const Store = () => {
           <Row className="g-4">
             {
               products.map((info, index) =>{
+                const qtyFound = cartItems.find(item => item._id === info._id)?.quantity || 0
                 return(
                   <Col key={index} className='d-flex justify-content-center'>
-                    <Cards key={info._id} data={info}/>
+                    <Cards key={info._id} data={info} quantity={qtyFound}/>
                   </Col>
                 );
               })

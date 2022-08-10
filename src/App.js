@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer';
 import {Container} from 'react-bootstrap';
 import {Routes, Route, Navigate} from 'react-router-dom';
 import CartProvider from "./context/CartContext";
+import ShoppingCart from './Pages/ShoppingCart/ShoppingCart'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route index element={<Home/>} />
           <Route path='/store' element={<Store/>} />
+          <Route path='/shopping-cart' element={<ShoppingCart/>} />
           {/* <Route path='/login' element={<Login />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/signup' element={<SignUp />} /> */}
