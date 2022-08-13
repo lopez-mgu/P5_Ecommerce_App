@@ -28,6 +28,7 @@ const reducer = (state, action) => {
       } else {
         cartItems = [...state.items, action.payload.cartItem];
       }
+      console.log('entre add', cartItems)
       return {
         ...state,
         items: cartItems
@@ -45,8 +46,10 @@ const reducer = (state, action) => {
                 quantity: item.quantity - 1
               };
             }
+            return item;
           });
           cartItemsr = [...items];
+          console.log('entre remove', cartItemsr)
      
         } else {
           cartItemsr = state.items.filter(

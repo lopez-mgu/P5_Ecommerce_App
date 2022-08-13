@@ -3,7 +3,7 @@ import CardCart from "../../components/CardCart/CardCart";
 import { CartStateContext } from "../../context/CartContext";
 import formatCurrency from '../../Utilities/FormatCurrency';
 import CheckOut from "../CheckOut/CheckOut";
-import { Button } from 'react-bootstrap';
+import { Button, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 
@@ -12,7 +12,9 @@ const ShoppingCart = () => {
     return(
         <>
             {cartItems.map(item => (
-                            <CardCart key={item._id} data={item} />
+                            <Row key={item._id} className="my-3">
+                                <CardCart  data={item} />
+                            </Row>
                         ))}
             <div className="ms-auto fw-bold fs-5">
                 Total{" "}
