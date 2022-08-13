@@ -4,13 +4,15 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { CartStateContext } from "../../context/CartContext";
 import axios from 'axios';
 
-//http://localhost:4000/api/v1/products
 const Store = () => {
   const { items: cartItems} = useContext(CartStateContext);
   const [products, setProducts] = useState([]);
+  const localurl = `http://localhost:4000/api/v1/products`;
+  const weburl = `https://p5-lopezmgu-ecommerce-backend.herokuapp.com/api/v1/products`;
+  console.log(weburl)
 
   const getProducts = async () => {
-    const url = 'https://p5-lopezmgu-ecommerce-backend.herokuapp.com/api/v1/products';
+    const url = weburl;
     const res = await axios.get(url)
     console.log(res.data)
     setProducts(res.data)

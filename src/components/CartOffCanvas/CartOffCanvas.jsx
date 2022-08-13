@@ -36,7 +36,7 @@ const CartOffCanvas = ({show, quantity}) => {
                         )}
                     </div>
                 </Stack>
-                <Button as={Link} to='/shopping-cart' variant="warning" className="w-100 mt-10 p-2" >CheckOut</Button>
+                <Button as={Link} to='/shopping-cart' variant="warning" className="w-100 mt-10 p-2" >Revisar y Pagar</Button>
             </>
             }
             
