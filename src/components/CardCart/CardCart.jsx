@@ -40,14 +40,13 @@ const CardCart = ({data}) =>{
   return (
     // <Stack direction="horizontal" gap={2} className="d-flex align-items-center my-4">
       <>
-        <Col className="d-flex flex-row justify-content-end align-items-center" xs={5}>
-          <OverlayTrigger placement="right" delay={{ show: 250, hide: 400 }} overlay={renderTooltip}>
+        <Col className="d-flex flex-row align-items-start" xs={5}>
+          <OverlayTrigger placement="right-end" delay={{ show: 250, hide: 400 }} overlay={renderTooltip}>
             <img
                 src={img_cart}
                 style={{ width: "8.5rem", height: "5rem", objectFit: "cover" }}
             />
           </OverlayTrigger>
-          <div>
               {/* <div>
               {type}{"  "}
               </div> */}
@@ -56,6 +55,7 @@ const CardCart = ({data}) =>{
                   Qty: {quantity}
                   </span>
               )} */}
+          <div>
               <div>
               {description.slice(0,10)+"..."}{" "}
               </div>
