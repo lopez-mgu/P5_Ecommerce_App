@@ -1,0 +1,17 @@
+/*.shopping-cart-container{
+    min-height: 100%;
+}
+
+.main{
+    overflow: auto;
+} */
+
+.phanton {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  
+.shopping-cart-container {
+    flex: 1;
+  }

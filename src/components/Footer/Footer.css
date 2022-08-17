@@ -1,8 +1,9 @@
 .main-footer{
     background: whitesmoke;
+    position: relative;
     margin-top: 3rem;
     padding-top: 1.5rem;
-
+    clear: both;
 }
 
 .footer-bottom{

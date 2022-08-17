@@ -3,8 +3,11 @@ import {Link} from 'react-router-dom';
 import {Navbar as NavbarBs, Container, Nav, Button} from 'react-bootstrap';
 import { CartStateContext } from "../../context/CartContext";
 import CartOffCanvas from "../CartOffCanvas/CartOffCanvas";
+import { UserContext } from '../../context/UserContext';
 
 const Navbar = () => {
+    const {user} = useContext(UserContext);
+    const isLoggedIn = !!user
     const { items: cartItems} = useContext(CartStateContext);
     let cartQuantity = 0
     cartItems.forEach(item => {cartQuantity += item.quantity});
@@ -28,7 +31,11 @@ const Navbar = () => {
                     <Nav className="me-auto"> 
                         <Nav.Link as={Link} to='/'>Home</Nav.Link>
                         <Nav.Link as={Link} to='/store'>Tienda</Nav.Link>
-                        <Nav.Link as={Link} to='/auth'>Loggin</Nav.Link>
+                        {
+                            isLoggedIn? 
+                            (<Nav.Link as={Link} to='/profile'>Mi Perfil</Nav.Link>):
+                            <Nav.Link as={Link} to='/auth'>Loggin/Registrarte</Nav.Link>
+                        }
                     </Nav>
                     </NavbarBs.Collapse>
                     <Button

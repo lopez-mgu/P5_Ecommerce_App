@@ -1,0 +1,9 @@
+.phanton {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  
+.checkout-container {
+    flex: 1;
+  }

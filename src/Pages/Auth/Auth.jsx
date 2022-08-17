@@ -12,6 +12,7 @@ const Auth = () => {
     const login_url = 'https://p5-lopezmgu-ecommerce-backend.herokuapp.com/api/v1/auth/login';
     const auth_url = 'https://p5-lopezmgu-ecommerce-backend.herokuapp.com/api/v1/users/me';
     const register_url = 'https://p5-lopezmgu-ecommerce-backend.herokuapp.com/api/v1/register';
+    const [userData, setUserData] = useState({});
     const { user, setUser } = useContext(UserContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -26,18 +27,23 @@ const Auth = () => {
         if (authMode === "signin") {
             axios.post(login_url, loginData)
                 .then(res => {
-                console.log(res.data)
-                console.log(res)
+                    console.log(res.data)
+                    //setUserData(res.data)
+                // console.log(res)
                 return (
                     axios.get(auth_url, {
                     headers: {
                         'Access-Control-Allow-Origin': '*',
                         'Authorization': `Bearer ${res.data.token}`
                     }
+                    
                     }).then(res => {
                     console.log(res.data)
+                    //setUserData({...userData, username: res.data.username, email: res.data.email})
+                    console.log('userData', userData)
                     setUser(res.data)
-                    //   navigate('/profile', { replace: true })
+                    // console.log(user)
+                    navigate('/profile', { replace: true })
                     })
                 )
                 })
@@ -77,7 +83,7 @@ const Auth = () => {
                 <h3 className="Auth-form-title">Inicia Sesión</h3>
                 <div className="text-center">
                     ¿No estás registrado?{" "}
-                    <span className="link-primary" onClick={changeAuthMode}>
+                    <span className="link-primary cursor-pointer" onClick={changeAuthMode} >
                     Registrate
                     </span>
                 </div>
@@ -102,7 +108,7 @@ const Auth = () => {
                     {errors.password && showAlert("Contraseña requerida...")}
                 </div>
                 <div className="d-grid gap-2 mt-3">
-                    <input type="submit" value="Enviar"/>
+                    <input type="submit" value="Enviar" className='text-white bg-primary rounded-pill cursor-pointer'/>
                 </div>
                 <p className="text-center mt-2">
                     ¿Olvidaste tu <a href="#">Contraseña?</a>
@@ -120,7 +126,7 @@ const Auth = () => {
             <h3 className="Auth-form-title">Inicia Sesión</h3>
             <div className="text-center">
                 ¿Ya estás registrado?{" "}
-                <span className="link-primary" onClick={changeAuthMode}>
+                <span className="link-primary cursor-pointer" onClick={changeAuthMode}>
                     Inicia Sesión
                 </span>
             </div>
@@ -175,7 +181,7 @@ const Auth = () => {
                 {errors.password && showAlert("contraseña requerida...")}
             </div>
             <div className="d-grid gap-2 mt-3">
-                <input type="submit" value="Enviar"/>
+                <input type="submit" value="Enviar" className='text-white bg-primary rounded-pill cursor-pointer'/>
             </div>
             <p className="text-center mt-2">
             ¿Olvidaste tu <a href="#">Contraseña?</a>

@@ -1,0 +1,9 @@
+.phanton {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  
+.profile-container {
+    flex: 1;
+  }
