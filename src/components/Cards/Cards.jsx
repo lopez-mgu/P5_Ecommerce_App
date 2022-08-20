@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import {Card, Button} from 'react-bootstrap';
 import { CartDispatchContext, addToCart, removeFromCart, removeOneFromCart } from "../../context/CartContext";
 import formatCurrency from '../../Utilities/FormatCurrency';
+import { Link } from 'react-router-dom';
 
 const Cards = ({data, quantity}) => {
     const dispatch = useContext(CartDispatchContext);
@@ -25,7 +26,12 @@ const Cards = ({data, quantity}) => {
     return(
         <>
             <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={img_url} height="200px" style={{objectFit: "cover"}}/>
+                <Link to={{
+                    pathname: `/${_id}`,
+                    state: {quantity: {quantity}}
+                }}>
+                    <Card.Img variant="top" src={img_url} height="200px" style={{objectFit: "cover"}}/>
+                </Link>
                 <Card.Body className='d-flex flex-column'>
                     <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
                         <span className="fs-2">{type}</span>

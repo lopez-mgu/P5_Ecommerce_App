@@ -12,6 +12,7 @@ import CheckOut from './Pages/CheckOut/CheckOut';
 import Auth from './Pages/Auth/Auth';
 import Profile from './Pages/Profile/Profile';
 import './App.css';
+import SingleProduct from './Pages/SingleProduct/SingleProduct';
 
 function App() {
   return (
@@ -25,7 +26,8 @@ function App() {
           <Container className='Site-content'>
             <Routes>
               <Route index element={<Home/>} />
-              <Route path='/store' element={<Store/>} />
+              <Route path='store' element={<Store/>} />
+              <Route path='/:storeId' element={<SingleProduct/>} />
               <Route path='/shopping-cart' element={<ShoppingCart/>} />
               <Route path='/checkout' element={<CheckOut/>} />
               <Route path='/auth' element={<Auth/>} />
