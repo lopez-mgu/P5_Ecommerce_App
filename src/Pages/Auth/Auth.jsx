@@ -14,6 +14,7 @@ const Auth = () => {
     const register_url = 'https://p5-lopezmgu-ecommerce-backend.herokuapp.com/api/v1/register';
     const [userData, setUserData] = useState({});
     const { user, setUser } = useContext(UserContext);
+    const { regStatus, setRegStatus } = useState({});
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
@@ -50,6 +51,21 @@ const Auth = () => {
         }else{
             console.log(data);
             axios.post(register_url, data)
+                .then(response => {
+                    if (response.status === 201){
+                        alert(`La cuenta para ${response.data.name} ${response.data.lastname} ha sido creada, por favor inicia sesión...`)
+                        setAuthMode("signin")
+                    }else{
+                        alert(`Un error ha ocurrido, por favor interta registrarte de nuevo...`)
+                    }
+                    console.log(response)
+                    console.log(response.data)
+                })
+                .catch(error => {
+                    // setRegStatus({ errorMessage: error.message });
+                    alert(`Un error ha ocurrido, por favor interta registrarte de nuevo...`)
+                    console.error('There was an error!', error);
+                });
         }
         
     }
