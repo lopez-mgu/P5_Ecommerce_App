@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import formatCurrency from '../../Utilities/FormatCurrency';
 import { CartStateContext, CartDispatchContext, addToCart, removeFromCart, removeOneFromCart } from "../../context/CartContext";
 import {Button} from 'react-bootstrap';
@@ -58,13 +58,15 @@ const SingleProduct = () => {
                                 <div class="col-md-6">
                                     <div class="images p-3">
                                         <div class="text-center p-4"> <img id="main-image" src={dinImg===undefined?img_url:dinImg} width="250" /> </div>
-                                        <div class="thumbnail text-center"> <img onClick={() => change_image(img_cart)} src={img_cart} width="70" /> <img onClick={() => change_image(img_url)} src={img_url} width="70" /> </div>
+                                        <div class="thumbnail text-center"> <img className="cursor-pointer" onClick={() => change_image(img_cart)} src={img_cart} width="70" /> <img className="cursor-pointer" onClick={() => change_image(img_url)} src={img_url} width="70" /> </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="product p-4">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <div class="d-flex align-items-center"> <i class="fa fa-long-arrow-left"></i> <span class="ml-1">Regresar</span> </div> <i class="fa fa-shopping-cart text-muted"></i>
+                                            {/* <Link to='store'>
+                                                <div class="d-flex align-items-center"> <span class="ml-1">Regresar</span></div> 
+                                            </Link> */}
                                         </div>
                                         <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand">{type}</span>
                                             <div class="price d-flex flex-row align-items-center"> <span class="act-price">{formatCurrency(price)}</span>
